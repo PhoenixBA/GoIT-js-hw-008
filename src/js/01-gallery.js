@@ -21,11 +21,15 @@ const markup = galleryItems
     </div>`;
   })
   .join('');
+
 containerEl.insertAdjacentHTML('afterbegin', markup);
 
-const gallery = new SimpleLightbox('.gallery__item a');
-gallery.on('show.simplelightbox', function () {
+//const gallery = new SimpleLightbox('.gallery__item a');
+//gallery.on('show.simplelightbox', gallery.next()) 
+//console.log(galleryItems);
 
+new SimpleLightbox('.gallery a', {
+captionsData: 'alt',
+captionDelay: 250,
 });
 
-console.log(galleryItems);

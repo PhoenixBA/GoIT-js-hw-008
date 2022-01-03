@@ -5,26 +5,9 @@
     formEl.addEventListener('submit', onSubmit);
     formEl.addEventListener('input', throttle(onInput, 500));
 
-    function onSubmit(event) {
-        event.preventDefault();
+function onInput(event) {
         
-    const userEmail = event.currentTarget.elements.email.value.trim();
-    const userMessage = event.currentTarget.elements.message.value.trim();
-    const newUser = {
-        email: userEmail,
-        message: userMessage,
-    }
-
-    if (!userEmail || !userMessage) return alert('Каждое поле обязательно к заполнению')
-
-        console.log(newUser);
-
-    formEl.reset();
-    localStorage.removeItem(STORAGE_KEY)
-    }
-
-    function onInput(event) {
-    const userEmail = formEl.elements.email.value.trim();
+    const userEmail = formEl.elements.email.value;  //.trim();
     const userMessage = formEl.elements.message.value.trim();
     const newUser = {
         email: userEmail,
@@ -38,7 +21,7 @@
     console.log(formData)
     }
     
-function populateMessageOutput() {
+function dataMessageOutput() {
     const savedMessage = localStorage.getItem(STORAGE_KEY);
     
     if (savedMessage !== null) {
@@ -53,5 +36,26 @@ function populateMessageOutput() {
         }
     }
 }
+dataMessageOutput();
     
-    populateMessageOutput();
+function onSubmit(event) {
+        
+    const userEmail = event.currentTarget.elements.email.value; //.trim();
+    const userMessage = event.currentTarget.elements.message.value.trim();
+    const newUser = {
+        email: userEmail,
+        message: userMessage,
+    }
+        event.preventDefault();
+
+    if (!userEmail || !userMessage) return alert('Каждое поле обязательно к заполнению')
+
+    console.log(newUser);
+    event.currentTarget.reset();
+    //formEl.reset();
+   localStorage.clear();
+   // localStorage.removeItem(STORAGE_KEY);
+    }
+    
+
+    
